@@ -11,7 +11,7 @@ public class PlayerAirState : PlayerState
     }
     public override void Exit(){
         base.Exit();
-        player.SetVelocity(0, player.rb.linearVelocity.y);
+        player.SetVelocity(0, 0);
     }
     public override void Update(){
         base.Update();
@@ -20,7 +20,7 @@ public class PlayerAirState : PlayerState
             stateMachine.ChangeState(player.wallSlideState);
         }
         
-        if (player.rb.linearVelocity.y == 0){
+        if (player.rb.linearVelocity.y == 0 && player.CheckIfGrounded()){
             stateMachine.ChangeState(player.idleState);
         }
         if (xInput != 0){
